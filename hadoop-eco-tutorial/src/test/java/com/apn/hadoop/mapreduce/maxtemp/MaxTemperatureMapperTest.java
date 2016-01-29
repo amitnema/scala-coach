@@ -1,4 +1,4 @@
-//package com.apn.hadoop.mapreduce.maxtemp;
+//package org.apn.hadoop.mapreduce.maxtemp;
 //
 //import java.io.IOException;
 //
@@ -9,7 +9,7 @@
 //import org.junit.Ignore;
 //import org.junit.Test;
 //
-//import com.apn.hadoop.mapreduce.maxtemp.MaxTemperatureMapper;
+//import org.apn.hadoop.mapreduce.maxtemp.MaxTemperatureMapper;
 //@Ignore
 //public class MaxTemperatureMapperTest {
 //	@Test

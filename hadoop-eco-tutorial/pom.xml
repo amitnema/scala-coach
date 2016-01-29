@@ -2,6 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>hadoop-eco-tutorial</artifactId>
+	<name>${project.artifactId}</name>
+	<description>My Hadoop Ecosystem Application, having map-reduce, pig, hive, hbase etc..</description>
+	<inceptionYear>2016</inceptionYear>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hadoop.version>2.6.0</hadoop.version>
@@ -217,7 +220,7 @@
 									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
 									<!-- <artificatJar>original-hadoop-examples-${project.version}.jar</artificatJar> -->
 									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
-									<jobClass>com.apn.hadoop.mapreduce.maxtemp.MaxTemperatureDriver</jobClass>
+									<jobClass>org.apn.hadoop.mapreduce.maxtemp.MaxTemperatureDriver</jobClass>
 									<localInput>${project.build.outputDirectory}\com\apn\hadoop\maxtemp\maxtemp.txt</localInput>
 								</configuration>
 								<goals>
@@ -253,7 +256,7 @@
 									<dfsOutput>/output/data</dfsOutput>
 									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
 									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
-									<jobClass>com.apn.hadoop.mapreduce.wordcount.WordCountCountersDriver\
+									<jobClass>org.apn.hadoop.mapreduce.wordcount.WordCountCountersDriver\
 										-D mapreduce.job.reduces=2</jobClass>
 									<localInput>${project.build.outputDirectory}\com\apn\hadoop\wordcount\wordcount.txt</localInput>
 								</configuration>
@@ -290,7 +293,7 @@
 									<dfsOutput>/output/data</dfsOutput>
 									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
 									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
-									<jobClass>com.apn.hadoop.mapreduce.movierating.TopMovies\
+									<jobClass>org.apn.hadoop.mapreduce.movierating.TopMovies\
 										/input/data/u.user /input/data/u.data /input/data/u.item</jobClass>
 									<localInput>${project.build.outputDirectory}\com\apn\hadoop\movierating\u.user</localInput>
 								</configuration>
@@ -327,7 +330,7 @@
 									<dfsOutput>/output/data</dfsOutput>
 									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
 									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
-									<jobClass>com.apn.hadoop.mapreduce.movielens.MovieGenreDriver</jobClass>
+									<jobClass>org.apn.hadoop.mapreduce.movielens.MovieGenreDriver</jobClass>
 									<localInput>${project.build.outputDirectory}\com\apn\hadoop\movielens\movies.dat</localInput>
 								</configuration>
 								<goals>
@@ -363,7 +366,7 @@
 									<dfsOutput>/output/data</dfsOutput>
 									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
 									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
-									<jobClass>com.apn.hadoop.mapreduce.movielens.MovieDriver1</jobClass>
+									<jobClass>org.apn.hadoop.mapreduce.movielens.MovieDriver1</jobClass>
 									<localInput>${project.build.outputDirectory}\com\apn\hadoop\movielens\ratings.csv</localInput>
 								</configuration>
 								<goals>
@@ -399,7 +402,7 @@
 									<dfsOutput>/output/data /output/data/partition 3 </dfsOutput>
 									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
 									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
-									<jobClass>com.apn.hadoop.mapreduce.documentcount.SortDriver</jobClass>
+									<jobClass>org.apn.hadoop.mapreduce.documentcount.SortDriver</jobClass>
 									<localInput>${project.build.outputDirectory}\com\apn\hadoop\documentcount\documentcount</localInput>
 								</configuration>
 								<goals>
@@ -435,7 +438,7 @@
 									<dfsOutput>/output/data</dfsOutput>
 									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
 									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
-									<jobClass>com.apn.hadoop.mapreduce.smsstatus.SmsDriver</jobClass>
+									<jobClass>org.apn.hadoop.mapreduce.smsstatus.SmsDriver</jobClass>
 									<localInput>${project.build.outputDirectory}\com\apn\hadoop\smsstatus\DeliveryDetails.txt</localInput>
 								</configuration>
 								<goals>
