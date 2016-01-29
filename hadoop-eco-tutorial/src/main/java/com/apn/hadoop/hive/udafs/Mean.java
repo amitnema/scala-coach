@@ -20,6 +20,7 @@ public class Mean extends UDAF {
 
 		private PartialResult partial;
 
+		@Override
 		public void init() {
 			partial = null;
 		}

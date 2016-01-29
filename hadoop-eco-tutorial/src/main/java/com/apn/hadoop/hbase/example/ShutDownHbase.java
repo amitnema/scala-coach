@@ -1,8 +1,9 @@
 package com.apn.hadoop.hbase.example;
 
 import java.io.IOException;
-import org.apache.hadoop.hbase.HBaseConfiguration;
+
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.client.HBaseAdmin;
 
 public class ShutDownHbase {

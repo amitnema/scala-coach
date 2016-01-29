@@ -1,6 +1,7 @@
 package com.apn.hadoop.hbase.example;
 
 import java.io.IOException;
+
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.hbase.HBaseConfiguration;
 import org.apache.hadoop.hbase.HColumnDescriptor;
@@ -29,14 +30,14 @@ public class HBaseOperations {
 			// Checking HBase connection
 			// Instantiating Configuration class
 			config = HBaseConfiguration.create();
-		
+
 			config.clear();
 			config.setInt("timeout", 12000);
 			config.set("hbase.zookeeper.quorum", "192.168.15.132");
 			config.set("zookeeper.znode.parent", "/hbase");
 			config.set("hbase.zookeeper.property.clientPort", "2181");
 			config.set("hbase.master", "192.168.15.132:60000");
-			
+
 			HBaseAdmin.checkHBaseAvailable(config);
 			System.out.println("HBase is running!");
 
@@ -53,7 +54,8 @@ public class HBaseOperations {
 			 */
 
 			if (!admin.isTableAvailable(TableName.valueOf(tableName))) {
-				config = new HBaseConfiguration().create();
+				new HBaseConfiguration();
+				config = HBaseConfiguration.create();
 				hbaseAdmin = new HBaseAdmin(config);
 				HTableDescriptor tableDescriptor = new HTableDescriptor(TableName.valueOf(tableName));
 				tableDescriptor.addFamily(new HColumnDescriptor("personal"));

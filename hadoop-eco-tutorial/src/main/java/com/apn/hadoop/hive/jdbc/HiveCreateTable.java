@@ -8,10 +8,9 @@ import java.sql.Statement;
 /**
  * The Class HiveCreateTable.
  *
- * create database tpc_ds; 
- * use tpc_ds;
+ * create database tpc_ds; use tpc_ds;
  * 
- *  hive --config /home/hduser/apn/config/hive --service hiveserver2
+ * hive --config /home/hduser/apn/config/hive --service hiveserver2
  *
  * @author amit.nema
  */
@@ -58,7 +57,7 @@ public class HiveCreateTable {
 				+ " FIELDS TERMINATED BY '\t'" + " LINES TERMINATED BY '\n'" + " STORED AS TEXTFILE");
 
 		System.out.println(" Table employee created.");
-		
+
 		stmt.close();
 		con.close();
 	}

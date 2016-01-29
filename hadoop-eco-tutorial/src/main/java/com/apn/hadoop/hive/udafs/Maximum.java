@@ -25,6 +25,7 @@ public class Maximum extends UDAF {
 		 * 
 		 * @see org.apache.hadoop.hive.ql.exec.UDAFEvaluator#init()
 		 */
+		@Override
 		public void init() {
 			result = null;
 		}

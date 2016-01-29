@@ -19,6 +19,7 @@ public class WordCountCountersDriver extends Configured implements Tool {
 		System.exit(exitCode);
 	}
 
+	@Override
 	public int run(String[] args) throws Exception {
 		Configuration configuration = getConf();
 
