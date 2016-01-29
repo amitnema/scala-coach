@@ -3,8 +3,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>org.apn.hadoop</groupId>
 	<artifactId>hadoop-ecosystem</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>pom</packaging>
 	<name>Hadoop Ecosystem</name>
 	<description>hadoop-ecosystem contains the samples of map reduce, pig, hive, hbase, spark and other hadoop related projects. </description>
+	<modules>
+		<module>hadoop-eco-tutorial</module>
+		<module>scala-tutorial</module>
+		<module>spark-tutorial</module>
+	</modules>
 </project>
