@@ -1,4 +1,4 @@
-package com.apn.scala
+package org.apn.scala
 
 /**
  * @author amit.nema
