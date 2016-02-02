@@ -1,3 +1,4 @@
+package org.apn.hadoop.mapreduce.maxtemp;
 //package org.apn.hadoop.mapreduce.maxtemp;
 //
 //import java.io.IOException;
