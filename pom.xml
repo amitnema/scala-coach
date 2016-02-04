@@ -9,7 +9,7 @@
 	<description>hadoop-ecosystem contains the samples of map reduce, pig, hive, hbase, spark and other hadoop related projects. </description>
 	<modules>
 		<module>hadoop-eco-tutorial</module>
-		<module>scala-tutorial</module>
+		
 		<module>spark-tutorial</module>
 	</modules>
 	<properties>
