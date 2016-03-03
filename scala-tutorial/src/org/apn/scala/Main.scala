@@ -1,5 +1,7 @@
-package org.apn
-
+package org.apn.scala
+/**
+ * @author amit.nema
+ */
 object Loops extends App {
   def addList(list: List[Int]): Int = {
     if (list.isEmpty) {
@@ -8,10 +10,12 @@ object Loops extends App {
     list.head + addList(list.tail)
   }
   val data = List(1, 2, 3, 4, 5);
-  //  var sum, i = 0;
-  //  while (i < data.length) {
-  //    sum +=data(i);
-  //    i += 1;
-  //  }
   println(addList(data));
+}
+
+object ReduceLeft extends App {
+  val data = List(1, 2, 3, 4, 5);
+  var sum = 0;
+  sum = data.reduceLeft(_ + _)
+  println(sum);
 }

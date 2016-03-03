@@ -52,5 +52,6 @@ public class WordCount {
 		JavaPairRDD<String, Integer> counter = pairs.reduceByKey(WORDS_REDUCER);
 
 		counter.saveAsTextFile(args[1]);
+		context.close();
 	}
 }
