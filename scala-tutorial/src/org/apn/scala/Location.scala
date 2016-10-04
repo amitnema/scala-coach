@@ -1,5 +1,7 @@
 package org.apn.scala
 
+import org.apn.scala.Point
+
 class Location(override val xc: Int, override val yc: Int, val zc: Int) extends Point(xc, yc) {
   var z: Int = zc
   def move(dx: Int, dy: Int, dz: Int) {
