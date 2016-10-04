@@ -14,6 +14,17 @@
 		<pig.version>0.15.0</pig.version>
 		<hive.version>1.2.1</hive.version>
 		<spark.version>1.6.0</spark.version>
+
+		<!-- ssh detail for testing -->
+		<ssh.host>192.168.227.128</ssh.host>
+		<ssh.user>hduser</ssh.user>
+		<ssh.pass>hadoop</ssh.pass>
+		<hmrjp.job.dir>/home/hduser/apn/projects/mapreduce/hadoop-eco-tutorial/</hmrjp.job.dir>
+		<hmrjp.dfs.input>/input/data</hmrjp.dfs.input>
+		<hmrjp.dfs.output>/output/data</hmrjp.dfs.output>
+		<hmrjp.cmd.hadoop>/usr/local/hadoop-2.6.0/bin/hadoop</hmrjp.cmd.hadoop>
+		<hmrjp.cmd.hdfs>/usr/local/hadoop-2.6.0/bin/hdfs</hmrjp.cmd.hdfs>
+
 		<!-- plugins -->
 		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
 		<mavan-jar-plugin.version>2.6</mavan-jar-plugin.version>
@@ -201,19 +212,18 @@
 								<phase>install</phase>
 								<!-- Configuration -->
 								<configuration>
-									<sshHost>192.168.15.130</sshHost>
-									<sshUser>hduser</sshUser>
-									<sshPass>hadoop</sshPass>
-									<hadoopCmd>/usr/local/hadoop-2.6.0/bin/hadoop</hadoopCmd>
-									<jobType>jar</jobType>
-									<jobDirectory>/home/hduser/temp/hadoop_projects/sftpwork/</jobDirectory>
-									<dfsInput>/input/data</dfsInput>
-									<dfsOutput>/output/data</dfsOutput>
-									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
-									<!-- <artificatJar>original-hadoop-examples-${project.version}.jar</artificatJar> -->
-									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
+									<sshHost>${ssh.host}</sshHost>
+									<sshUser>${ssh.user}</sshUser>
+									<sshPass>${ssh.pass}</sshPass>
+									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
+									<jobType>${project.packaging}</jobType>
+									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
+									<dfsInput>${hmrjp.dfs.input}</dfsInput>
+									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
+									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
+									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
 									<jobClass>org.apn.hadoop.mapreduce.maxtemp.MaxTemperatureDriver</jobClass>
-									<localInput>${project.build.outputDirectory}\com\apn\hadoop\maxtemp\maxtemp.txt</localInput>
+									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\maxtemp\maxtemp.txt</localInput>
 								</configuration>
 								<goals>
 									<goal>hmr-input</goal>
@@ -238,19 +248,19 @@
 								<phase>install</phase>
 								<!-- Configuration -->
 								<configuration>
-									<sshHost>192.168.15.130</sshHost>
-									<sshUser>hduser</sshUser>
-									<sshPass>hadoop</sshPass>
-									<hadoopCmd>/usr/local/hadoop-2.6.0/bin/hadoop</hadoopCmd>
-									<jobType>jar</jobType>
-									<jobDirectory>/home/hduser/temp/hadoop_projects/sftpwork/</jobDirectory>
-									<dfsInput>/input/data</dfsInput>
-									<dfsOutput>/output/data</dfsOutput>
-									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
-									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
+									<sshHost>${ssh.host}</sshHost>
+									<sshUser>${ssh.user}</sshUser>
+									<sshPass>${ssh.pass}</sshPass>
+									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
+									<jobType>${project.packaging}</jobType>
+									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
+									<dfsInput>${hmrjp.dfs.input}</dfsInput>
+									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
+									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
+									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
 									<jobClass>org.apn.hadoop.mapreduce.wordcount.WordCountCountersDriver\
 										-D mapreduce.job.reduces=2</jobClass>
-									<localInput>${project.build.outputDirectory}\com\apn\hadoop\wordcount\wordcount.txt</localInput>
+									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\wordcount\wordcount.txt</localInput>
 								</configuration>
 								<goals>
 									<goal>hmr-input</goal>
@@ -275,19 +285,19 @@
 								<phase>install</phase>
 								<!-- Configuration -->
 								<configuration>
-									<sshHost>192.168.15.130</sshHost>
-									<sshUser>hduser</sshUser>
-									<sshPass>hadoop</sshPass>
-									<hadoopCmd>/usr/local/hadoop-2.6.0/bin/hadoop</hadoopCmd>
-									<jobType>jar</jobType>
-									<jobDirectory>/home/hduser/temp/hadoop_projects/sftpwork/</jobDirectory>
-									<dfsInput>/input/data</dfsInput>
-									<dfsOutput>/output/data</dfsOutput>
-									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
-									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
+									<sshHost>${ssh.host}</sshHost>
+									<sshUser>${ssh.user}</sshUser>
+									<sshPass>${ssh.pass}</sshPass>
+									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
+									<jobType>${project.packaging}</jobType>
+									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
+									<dfsInput>${hmrjp.dfs.input}</dfsInput>
+									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
+									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
+									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
 									<jobClass>org.apn.hadoop.mapreduce.movierating.TopMovies\
 										/input/data/u.user /input/data/u.data /input/data/u.item</jobClass>
-									<localInput>${project.build.outputDirectory}\com\apn\hadoop\movierating\u.user</localInput>
+									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\movierating\u.user</localInput>
 								</configuration>
 								<goals>
 									<goal>hmr-input</goal>
@@ -312,18 +322,18 @@
 								<phase>install</phase>
 								<!-- Configuration -->
 								<configuration>
-									<sshHost>192.168.15.130</sshHost>
-									<sshUser>hduser</sshUser>
-									<sshPass>hadoop</sshPass>
-									<hadoopCmd>/usr/local/hadoop-2.6.0/bin/hadoop</hadoopCmd>
-									<jobType>jar</jobType>
-									<jobDirectory>/home/hduser/temp/hadoop_projects/sftpwork/</jobDirectory>
-									<dfsInput>/input/data</dfsInput>
-									<dfsOutput>/output/data</dfsOutput>
-									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
-									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
+									<sshHost>${ssh.host}</sshHost>
+									<sshUser>${ssh.user}</sshUser>
+									<sshPass>${ssh.pass}</sshPass>
+									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
+									<jobType>${project.packaging}</jobType>
+									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
+									<dfsInput>${hmrjp.dfs.input}</dfsInput>
+									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
+									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
+									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
 									<jobClass>org.apn.hadoop.mapreduce.movielens.MovieGenreDriver</jobClass>
-									<localInput>${project.build.outputDirectory}\com\apn\hadoop\movielens\movies.dat</localInput>
+									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\movielens\movies.dat</localInput>
 								</configuration>
 								<goals>
 									<goal>hmr-input</goal>
@@ -348,18 +358,18 @@
 								<phase>install</phase>
 								<!-- Configuration -->
 								<configuration>
-									<sshHost>192.168.15.130</sshHost>
-									<sshUser>hduser</sshUser>
-									<sshPass>hadoop</sshPass>
-									<hadoopCmd>/usr/local/hadoop-2.6.0/bin/hadoop</hadoopCmd>
-									<jobType>jar</jobType>
-									<jobDirectory>/home/hduser/temp/hadoop_projects/sftpwork/</jobDirectory>
-									<dfsInput>/input/data</dfsInput>
-									<dfsOutput>/output/data</dfsOutput>
-									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
-									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
+									<sshHost>${ssh.host}</sshHost>
+									<sshUser>${ssh.user}</sshUser>
+									<sshPass>${ssh.pass}</sshPass>
+									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
+									<jobType>${project.packaging}</jobType>
+									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
+									<dfsInput>${hmrjp.dfs.input}</dfsInput>
+									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
+									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
+									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
 									<jobClass>org.apn.hadoop.mapreduce.movielens.MovieDriver1</jobClass>
-									<localInput>${project.build.outputDirectory}\com\apn\hadoop\movielens\ratings.csv</localInput>
+									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\movielens\ratings.csv</localInput>
 								</configuration>
 								<goals>
 									<goal>hmr-input</goal>
@@ -384,18 +394,18 @@
 								<phase>install</phase>
 								<!-- Configuration -->
 								<configuration>
-									<sshHost>192.168.15.130</sshHost>
-									<sshUser>hduser</sshUser>
-									<sshPass>hadoop</sshPass>
-									<hadoopCmd>/usr/local/hadoop-2.6.0/bin/hadoop</hadoopCmd>
-									<jobType>jar</jobType>
-									<jobDirectory>/home/hduser/temp/hadoop_projects/sftpwork/</jobDirectory>
-									<dfsInput>/input/data</dfsInput>
-									<dfsOutput>/output/data /output/data/partition 3 </dfsOutput>
-									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
-									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
+									<sshHost>${ssh.host}</sshHost>
+									<sshUser>${ssh.user}</sshUser>
+									<sshPass>${ssh.pass}</sshPass>
+									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
+									<jobType>${project.packaging}</jobType>
+									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
+									<dfsInput>${hmrjp.dfs.input}</dfsInput>
+									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
+									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
+									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
 									<jobClass>org.apn.hadoop.mapreduce.documentcount.SortDriver</jobClass>
-									<localInput>${project.build.outputDirectory}\com\apn\hadoop\documentcount\documentcount</localInput>
+									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\documentcount\documentcount</localInput>
 								</configuration>
 								<goals>
 									<goal>hmr-input</goal>
@@ -420,18 +430,18 @@
 								<phase>install</phase>
 								<!-- Configuration -->
 								<configuration>
-									<sshHost>192.168.15.130</sshHost>
-									<sshUser>hduser</sshUser>
-									<sshPass>hadoop</sshPass>
-									<hadoopCmd>/usr/local/hadoop-2.6.0/bin/hadoop</hadoopCmd>
-									<jobType>jar</jobType>
-									<jobDirectory>/home/hduser/temp/hadoop_projects/sftpwork/</jobDirectory>
-									<dfsInput>/input/data</dfsInput>
-									<dfsOutput>/output/data</dfsOutput>
-									<hdfsCmd>/usr/local/hadoop-2.6.0/bin/hdfs</hdfsCmd>
-									<artificatJar>hadoop-examples-${project.version}.jar</artificatJar>
+									<sshHost>${ssh.host}</sshHost>
+									<sshUser>${ssh.user}</sshUser>
+									<sshPass>${ssh.pass}</sshPass>
+									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
+									<jobType>${project.packaging}</jobType>
+									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
+									<dfsInput>${hmrjp.dfs.input}</dfsInput>
+									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
+									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
+									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
 									<jobClass>org.apn.hadoop.mapreduce.smsstatus.SmsDriver</jobClass>
-									<localInput>${project.build.outputDirectory}\com\apn\hadoop\smsstatus\DeliveryDetails.txt</localInput>
+									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\smsstatus\DeliveryDetails.txt</localInput>
 								</configuration>
 								<goals>
 									<goal>hmr-input</goal>
