@@ -9,7 +9,7 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<hadoop.version>2.6.0</hadoop.version>
 		<mrunit.version>1.1.0</mrunit.version>
-		<java.version>1.6</java.version>
+		<java.version>1.7</java.version>
 		<mahout.version>0.11.1</mahout.version>
 		<pig.version>0.15.0</pig.version>
 		<hive.version>1.2.1</hive.version>
@@ -20,10 +20,13 @@
 		<ssh.user>hduser</ssh.user>
 		<ssh.pass>hadoop</ssh.pass>
 		<hmrjp.job.dir>/home/hduser/apn/projects/mapreduce/hadoop-eco-tutorial/</hmrjp.job.dir>
-		<hmrjp.dfs.input>/input/data</hmrjp.dfs.input>
-		<hmrjp.dfs.output>/output/data</hmrjp.dfs.output>
 		<hmrjp.cmd.hadoop>/usr/local/hadoop-2.6.0/bin/hadoop</hmrjp.cmd.hadoop>
 		<hmrjp.cmd.hdfs>/usr/local/hadoop-2.6.0/bin/hdfs</hmrjp.cmd.hdfs>
+		<hmrjp.dfs.input>/input/data</hmrjp.dfs.input>
+		<hmrjp.dfs.output>/output/data</hmrjp.dfs.output>
+
+		<hmrjp.class.job>org.apn.hadoop.mapreduce.pattern.filter.FilterDriver</hmrjp.class.job>
+		<hmrjp.input>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\pattern\weather.dat</hmrjp.input>
 
 		<!-- plugins -->
 		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
@@ -110,6 +113,13 @@
 			<artifactId>hive-jdbc</artifactId>
 			<version>1.2.1</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
+		<dependency>
+			<groupId>com.google.guava</groupId>
+			<artifactId>guava</artifactId>
+			<version>19.0</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<finalName>hadoop-examples-${project.version}</finalName>
@@ -128,36 +138,36 @@
 			</resource>
 		</resources>
 		<plugins>
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>build-helper-maven-plugin</artifactId>
-				<version>1.10</version>
-				<executions>
-					<execution>
-						<phase>generate-sources</phase>
-						<goals>
-							<goal>add-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>src/main/scala</source>
-							</sources>
-						</configuration>
-					</execution>
-					<execution>
-						<id>add-test-source</id>
-						<phase>generate-test-sources</phase>
-						<goals>
-							<goal>add-test-source</goal>
-						</goals>
-						<configuration>
-							<sources>
-								<source>src/test/scala</source>
-							</sources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
+			<!-- <plugin> -->
+			<!-- <groupId>org.codehaus.mojo</groupId> -->
+			<!-- <artifactId>build-helper-maven-plugin</artifactId> -->
+			<!-- <version>1.10</version> -->
+			<!-- <executions> -->
+			<!-- <execution> -->
+			<!-- <phase>generate-sources</phase> -->
+			<!-- <goals> -->
+			<!-- <goal>add-source</goal> -->
+			<!-- </goals> -->
+			<!-- <configuration> -->
+			<!-- <sources> -->
+			<!-- <source>src/main/scala</source> -->
+			<!-- </sources> -->
+			<!-- </configuration> -->
+			<!-- </execution> -->
+			<!-- <execution> -->
+			<!-- <id>add-test-source</id> -->
+			<!-- <phase>generate-test-sources</phase> -->
+			<!-- <goals> -->
+			<!-- <goal>add-test-source</goal> -->
+			<!-- </goals> -->
+			<!-- <configuration> -->
+			<!-- <sources> -->
+			<!-- <source>src/test/scala</source> -->
+			<!-- </sources> -->
+			<!-- </configuration> -->
+			<!-- </execution> -->
+			<!-- </executions> -->
+			<!-- </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -442,6 +452,42 @@
 									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
 									<jobClass>org.apn.hadoop.mapreduce.smsstatus.SmsDriver</jobClass>
 									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\smsstatus\DeliveryDetails.txt</localInput>
+								</configuration>
+								<goals>
+									<goal>hmr-input</goal>
+									<goal>hmr-exec</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+		<profile>
+			<id>hmrjp_job</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>perself</groupId>
+						<artifactId>hmrjp-maven-plugin</artifactId>
+						<version>1.0-SNAPSHOT</version>
+						<executions>
+							<execution>
+								<phase>install</phase>
+								<!-- Configuration -->
+								<configuration>
+									<sshHost>${ssh.host}</sshHost>
+									<sshUser>${ssh.user}</sshUser>
+									<sshPass>${ssh.pass}</sshPass>
+									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
+									<jobType>${project.packaging}</jobType>
+									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
+									<dfsInput>${hmrjp.dfs.input}</dfsInput>
+									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
+									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
+									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
+									<jobClass>${hmrjp.class.job}</jobClass>
+									<localInput>${hmrjp.input}</localInput>
 								</configuration>
 								<goals>
 									<goal>hmr-input</goal>
