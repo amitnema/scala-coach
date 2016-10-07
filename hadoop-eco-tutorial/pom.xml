@@ -16,7 +16,7 @@
 		<spark.version>1.6.0</spark.version>
 
 		<!-- ssh detail for testing -->
-		<ssh.host>192.168.227.128</ssh.host>
+		<ssh.host>localhost</ssh.host>
 		<ssh.user>hduser</ssh.user>
 		<ssh.pass>hadoop</ssh.pass>
 		<hmrjp.job.dir>/home/hduser/apn/projects/mapreduce/hadoop-eco-tutorial/</hmrjp.job.dir>
