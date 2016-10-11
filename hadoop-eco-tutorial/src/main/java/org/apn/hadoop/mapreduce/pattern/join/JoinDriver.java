@@ -1,7 +1,9 @@
 package org.apn.hadoop.mapreduce.pattern.join;
 
+import java.io.File;
 import java.util.Random;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.Path;
@@ -26,6 +28,7 @@ public class JoinDriver extends Configured implements Tool {
 	@Override
 	public int run(String[] args) throws Exception {
 		Preconditions.checkArgument(args.length > 3, "Usage: JoinDriver <input path1> <input path2> <output path>");
+		FileUtils.deleteQuietly(new File(args[2]));
 		Job job = Job.getInstance(new Configuration(), "HIVE: "+new Random().nextInt(10));
 
 		job.setJarByClass(JoinDriver.class);

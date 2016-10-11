@@ -16,7 +16,7 @@
 		<spark.version>1.6.0</spark.version>
 
 		<!-- ssh detail for testing -->
-		<ssh.host>localhost</ssh.host>
+		<ssh.host>192.168.227.128</ssh.host>
 		<ssh.user>hduser</ssh.user>
 		<ssh.pass>hadoop</ssh.pass>
 		<hmrjp.job.dir>/home/hduser/apn/projects/mapreduce/hadoop-eco-tutorial/</hmrjp.job.dir>
@@ -24,6 +24,15 @@
 		<hmrjp.cmd.hdfs>/usr/local/hadoop-2.6.0/bin/hdfs</hmrjp.cmd.hdfs>
 		<hmrjp.dfs.input>/input/data</hmrjp.dfs.input>
 		<hmrjp.dfs.output>/output/data</hmrjp.dfs.output>
+
+		<!-- <ssh.host>impetus-i0054.impetus.co.in</ssh.host> -->
+		<!-- <ssh.user>root</ssh.user> -->
+		<!-- <ssh.pass>impetus</ssh.pass> -->
+		<!-- <hmrjp.job.dir>/root/apn/mapr/</hmrjp.job.dir> -->
+		<!-- <hmrjp.cmd.hadoop>/usr/hdp/current/hadoop-client/bin/hadoop</hmrjp.cmd.hadoop> -->
+		<!-- <hmrjp.cmd.hdfs>/usr/hdp/current/hadoop-client/bin/hdfs</hmrjp.cmd.hdfs> -->
+		<!-- <hmrjp.dfs.input>/apn/input/data</hmrjp.dfs.input> -->
+		<!-- <hmrjp.dfs.output>/apn/output/data</hmrjp.dfs.output> -->
 
 		<hmrjp.class.job>org.apn.hadoop.mapreduce.pattern.filter.FilterDriver</hmrjp.class.job>
 		<hmrjp.input>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\pattern\weather.dat</hmrjp.input>
