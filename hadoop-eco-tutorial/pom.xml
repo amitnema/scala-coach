@@ -15,27 +15,15 @@
 		<hive.version>1.2.1</hive.version>
 		<spark.version>1.6.0</spark.version>
 
-		<!-- ssh detail for testing -->
-		<ssh.host>192.168.227.128</ssh.host>
-		<ssh.user>hduser</ssh.user>
-		<ssh.pass>hadoop</ssh.pass>
-		<hmrjp.job.dir>/home/hduser/apn/projects/mapreduce/hadoop-eco-tutorial/</hmrjp.job.dir>
-		<hmrjp.cmd.hadoop>/usr/local/hadoop-2.6.0/bin/hadoop</hmrjp.cmd.hadoop>
-		<hmrjp.cmd.hdfs>/usr/local/hadoop-2.6.0/bin/hdfs</hmrjp.cmd.hdfs>
-		<hmrjp.dfs.input>/input/data</hmrjp.dfs.input>
-		<hmrjp.dfs.output>/output/data</hmrjp.dfs.output>
-
-		<!-- <ssh.host>impetus-i0054.impetus.co.in</ssh.host> -->
-		<!-- <ssh.user>root</ssh.user> -->
-		<!-- <ssh.pass>impetus</ssh.pass> -->
-		<!-- <hmrjp.job.dir>/root/apn/mapr/</hmrjp.job.dir> -->
-		<!-- <hmrjp.cmd.hadoop>/usr/hdp/current/hadoop-client/bin/hadoop</hmrjp.cmd.hadoop> -->
-		<!-- <hmrjp.cmd.hdfs>/usr/hdp/current/hadoop-client/bin/hdfs</hmrjp.cmd.hdfs> -->
-		<!-- <hmrjp.dfs.input>/apn/input/data</hmrjp.dfs.input> -->
-		<!-- <hmrjp.dfs.output>/apn/output/data</hmrjp.dfs.output> -->
-
-		<hmrjp.class.job>org.apn.hadoop.mapreduce.pattern.filter.FilterDriver</hmrjp.class.job>
-		<hmrjp.input>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\pattern\weather.dat</hmrjp.input>
+		<ssh.host>localhost</ssh.host>
+		<ssh.user>root</ssh.user>
+		<ssh.pass>password</ssh.pass>
+		<hmrjp.phase>do-not-execute</hmrjp.phase>
+		<hmrjp.job.dir>/root/Downloads/apn/</hmrjp.job.dir>
+		<hmrjp.cmd.hadoop>/usr/hdp/current/hadoop-client/bin/hadoop</hmrjp.cmd.hadoop>
+		<hmrjp.cmd.hdfs>/usr/hdp/current/hadoop-client/bin/hdfs</hmrjp.cmd.hdfs>
+		<hmrjp.dfs.input>/apn/input/data</hmrjp.dfs.input>
+		<hmrjp.dfs.output>/apn/output/data</hmrjp.dfs.output>
 
 		<!-- plugins -->
 		<maven-compiler-plugin.version>3.3</maven-compiler-plugin.version>
@@ -93,12 +81,7 @@
 			<artifactId>pigsmoke</artifactId>
 			<version>0.15.0</version>
 		</dependency>
-		<!-- ***** mahout ***** -->
-		<!-- <dependency> -->
-		<!-- <groupId>org.apache.mahout</groupId> -->
-		<!-- <artifactId>mahout-examples</artifactId> -->
-		<!-- <version>${mahout.version}</version> -->
-		<!-- </dependency> -->
+
 		<!-- ***** hbase ***** -->
 		<dependency>
 			<groupId>org.apache.hbase</groupId>
@@ -122,13 +105,11 @@
 			<artifactId>hive-jdbc</artifactId>
 			<version>1.2.1</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
 			<version>19.0</version>
 		</dependency>
-
 	</dependencies>
 	<build>
 		<finalName>hadoop-examples-${project.version}</finalName>
@@ -147,36 +128,6 @@
 			</resource>
 		</resources>
 		<plugins>
-			<!-- <plugin> -->
-			<!-- <groupId>org.codehaus.mojo</groupId> -->
-			<!-- <artifactId>build-helper-maven-plugin</artifactId> -->
-			<!-- <version>1.10</version> -->
-			<!-- <executions> -->
-			<!-- <execution> -->
-			<!-- <phase>generate-sources</phase> -->
-			<!-- <goals> -->
-			<!-- <goal>add-source</goal> -->
-			<!-- </goals> -->
-			<!-- <configuration> -->
-			<!-- <sources> -->
-			<!-- <source>src/main/scala</source> -->
-			<!-- </sources> -->
-			<!-- </configuration> -->
-			<!-- </execution> -->
-			<!-- <execution> -->
-			<!-- <id>add-test-source</id> -->
-			<!-- <phase>generate-test-sources</phase> -->
-			<!-- <goals> -->
-			<!-- <goal>add-test-source</goal> -->
-			<!-- </goals> -->
-			<!-- <configuration> -->
-			<!-- <sources> -->
-			<!-- <source>src/test/scala</source> -->
-			<!-- </sources> -->
-			<!-- </configuration> -->
-			<!-- </execution> -->
-			<!-- </executions> -->
-			<!-- </plugin> -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -190,323 +141,46 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>${mavan-jar-plugin.version}</version>
-				<!-- <configuration> -->
-				<!-- <outputDirectory>${basedir}</outputDirectory> -->
-				<!-- </configuration> -->
 			</plugin>
-			<!-- Following shade plugin to create an Uber jar -->
-			<!-- <plugin> -->
-			<!-- <groupId>org.apache.maven.plugins</groupId> -->
-			<!-- <artifactId>maven-shade-plugin</artifactId> -->
-			<!-- <version>${maven-shade-plugin.version}</version> -->
-			<!-- <configuration> -->
-			<!-- <transformers> -->
-			<!-- <transformer -->
-			<!-- implementation="org.apache.maven.plugins.shade.resource.ApacheLicenseResourceTransformer"> -->
-			<!-- </transformer> -->
-			<!-- </transformers> -->
-			<!-- </configuration> -->
-			<!-- <executions> -->
-			<!-- <execution> -->
-			<!-- <phase>package</phase> -->
-			<!-- <goals> -->
-			<!-- <goal>shade</goal> -->
-			<!-- </goals> -->
-			<!-- </execution> -->
-			<!-- </executions> -->
-			<!-- </plugin> -->
+			<plugin>
+				<groupId>perself</groupId>
+				<artifactId>hmrjp-maven-plugin</artifactId>
+				<version>1.0-SNAPSHOT</version>
+				<executions>
+					<execution>
+						<phase>${hmrjp.phase}</phase>
+						<!-- Configuration -->
+						<configuration>
+							<sshHost>${ssh.host}</sshHost>
+							<sshUser>${ssh.user}</sshUser>
+							<sshPass>${ssh.pass}</sshPass>
+							<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
+							<jobType>${project.packaging}</jobType>
+							<jobDirectory>${hmrjp.job.dir}</jobDirectory>
+							<dfsInput>${hmrjp.dfs.input}</dfsInput>
+							<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
+							<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
+							<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
+							<jobClass>${hmrjp.class.job}</jobClass>
+							<localInput>${hmrjp.input}</localInput>
+						</configuration>
+						<goals>
+							<goal>hmr-input</goal>
+							<goal>hmr-exec</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
 	<profiles>
 		<profile>
-			<id>maxtemp</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>perself</groupId>
-						<artifactId>hmrjp-maven-plugin</artifactId>
-						<version>1.0-SNAPSHOT</version>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<!-- Configuration -->
-								<configuration>
-									<sshHost>${ssh.host}</sshHost>
-									<sshUser>${ssh.user}</sshUser>
-									<sshPass>${ssh.pass}</sshPass>
-									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
-									<jobType>${project.packaging}</jobType>
-									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
-									<dfsInput>${hmrjp.dfs.input}</dfsInput>
-									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
-									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
-									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
-									<jobClass>org.apn.hadoop.mapreduce.maxtemp.MaxTemperatureDriver</jobClass>
-									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\maxtemp\maxtemp.txt</localInput>
-								</configuration>
-								<goals>
-									<goal>hmr-input</goal>
-									<goal>hmr-exec</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>wordcount</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>perself</groupId>
-						<artifactId>hmrjp-maven-plugin</artifactId>
-						<version>1.0-SNAPSHOT</version>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<!-- Configuration -->
-								<configuration>
-									<sshHost>${ssh.host}</sshHost>
-									<sshUser>${ssh.user}</sshUser>
-									<sshPass>${ssh.pass}</sshPass>
-									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
-									<jobType>${project.packaging}</jobType>
-									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
-									<dfsInput>${hmrjp.dfs.input}</dfsInput>
-									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
-									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
-									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
-									<jobClass>org.apn.hadoop.mapreduce.wordcount.WordCountCountersDriver\
-										-D mapreduce.job.reduces=2</jobClass>
-									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\wordcount\wordcount.txt</localInput>
-								</configuration>
-								<goals>
-									<goal>hmr-input</goal>
-									<goal>hmr-exec</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>movierating</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>perself</groupId>
-						<artifactId>hmrjp-maven-plugin</artifactId>
-						<version>1.0-SNAPSHOT</version>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<!-- Configuration -->
-								<configuration>
-									<sshHost>${ssh.host}</sshHost>
-									<sshUser>${ssh.user}</sshUser>
-									<sshPass>${ssh.pass}</sshPass>
-									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
-									<jobType>${project.packaging}</jobType>
-									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
-									<dfsInput>${hmrjp.dfs.input}</dfsInput>
-									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
-									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
-									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
-									<jobClass>org.apn.hadoop.mapreduce.movierating.TopMovies\
-										/input/data/u.user /input/data/u.data /input/data/u.item</jobClass>
-									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\movierating\u.user</localInput>
-								</configuration>
-								<goals>
-									<goal>hmr-input</goal>
-									<goal>hmr-exec</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>moviegenre</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>perself</groupId>
-						<artifactId>hmrjp-maven-plugin</artifactId>
-						<version>1.0-SNAPSHOT</version>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<!-- Configuration -->
-								<configuration>
-									<sshHost>${ssh.host}</sshHost>
-									<sshUser>${ssh.user}</sshUser>
-									<sshPass>${ssh.pass}</sshPass>
-									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
-									<jobType>${project.packaging}</jobType>
-									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
-									<dfsInput>${hmrjp.dfs.input}</dfsInput>
-									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
-									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
-									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
-									<jobClass>org.apn.hadoop.mapreduce.movielens.MovieGenreDriver</jobClass>
-									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\movielens\movies.dat</localInput>
-								</configuration>
-								<goals>
-									<goal>hmr-input</goal>
-									<goal>hmr-exec</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>movielens1</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>perself</groupId>
-						<artifactId>hmrjp-maven-plugin</artifactId>
-						<version>1.0-SNAPSHOT</version>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<!-- Configuration -->
-								<configuration>
-									<sshHost>${ssh.host}</sshHost>
-									<sshUser>${ssh.user}</sshUser>
-									<sshPass>${ssh.pass}</sshPass>
-									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
-									<jobType>${project.packaging}</jobType>
-									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
-									<dfsInput>${hmrjp.dfs.input}</dfsInput>
-									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
-									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
-									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
-									<jobClass>org.apn.hadoop.mapreduce.movielens.MovieDriver1</jobClass>
-									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\movielens\ratings.csv</localInput>
-								</configuration>
-								<goals>
-									<goal>hmr-input</goal>
-									<goal>hmr-exec</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>documentcount</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>perself</groupId>
-						<artifactId>hmrjp-maven-plugin</artifactId>
-						<version>1.0-SNAPSHOT</version>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<!-- Configuration -->
-								<configuration>
-									<sshHost>${ssh.host}</sshHost>
-									<sshUser>${ssh.user}</sshUser>
-									<sshPass>${ssh.pass}</sshPass>
-									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
-									<jobType>${project.packaging}</jobType>
-									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
-									<dfsInput>${hmrjp.dfs.input}</dfsInput>
-									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
-									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
-									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
-									<jobClass>org.apn.hadoop.mapreduce.documentcount.SortDriver</jobClass>
-									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\documentcount\documentcount</localInput>
-								</configuration>
-								<goals>
-									<goal>hmr-input</goal>
-									<goal>hmr-exec</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>smsstatus</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>perself</groupId>
-						<artifactId>hmrjp-maven-plugin</artifactId>
-						<version>1.0-SNAPSHOT</version>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<!-- Configuration -->
-								<configuration>
-									<sshHost>${ssh.host}</sshHost>
-									<sshUser>${ssh.user}</sshUser>
-									<sshPass>${ssh.pass}</sshPass>
-									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
-									<jobType>${project.packaging}</jobType>
-									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
-									<dfsInput>${hmrjp.dfs.input}</dfsInput>
-									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
-									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
-									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
-									<jobClass>org.apn.hadoop.mapreduce.smsstatus.SmsDriver</jobClass>
-									<localInput>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\smsstatus\DeliveryDetails.txt</localInput>
-								</configuration>
-								<goals>
-									<goal>hmr-input</goal>
-									<goal>hmr-exec</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-		<profile>
-			<id>hmrjp_job</id>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>perself</groupId>
-						<artifactId>hmrjp-maven-plugin</artifactId>
-						<version>1.0-SNAPSHOT</version>
-						<executions>
-							<execution>
-								<phase>install</phase>
-								<!-- Configuration -->
-								<configuration>
-									<sshHost>${ssh.host}</sshHost>
-									<sshUser>${ssh.user}</sshUser>
-									<sshPass>${ssh.pass}</sshPass>
-									<hadoopCmd>${hmrjp.cmd.hadoop}</hadoopCmd>
-									<jobType>${project.packaging}</jobType>
-									<jobDirectory>${hmrjp.job.dir}</jobDirectory>
-									<dfsInput>${hmrjp.dfs.input}</dfsInput>
-									<dfsOutput>${hmrjp.dfs.output}</dfsOutput>
-									<hdfsCmd>${hmrjp.cmd.hdfs}</hdfsCmd>
-									<artificatJar>${project.build.finalName}.${project.packaging}</artificatJar>
-									<jobClass>${hmrjp.class.job}</jobClass>
-									<localInput>${hmrjp.input}</localInput>
-								</configuration>
-								<goals>
-									<goal>hmr-input</goal>
-									<goal>hmr-exec</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
-			</build>
+			<id>msdd</id>
+			<properties>
+				<hmrjp.phase>install</hmrjp.phase>
+				<hmrjp.class.job>org.apn.hadoop.mapreduce.pattern.summarization.MedianStandardDeviationDriver</hmrjp.class.job>
+				<hmrjp.input>${project.build.outputDirectory}\org\apn\hadoop\mapreduce\pattern\weather.dat</hmrjp.input>
+			</properties>
 		</profile>
 	</profiles>
 	<parent>
