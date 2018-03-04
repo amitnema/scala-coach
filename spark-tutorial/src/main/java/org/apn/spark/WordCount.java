@@ -2,7 +2,6 @@ package org.apn.spark;
 
 import java.util.Arrays;
 
-import org.apache.spark.SparkConf;
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
 import org.apache.spark.api.java.JavaSparkContext;
@@ -16,7 +15,7 @@ public class WordCount {
 	private static final FlatMapFunction<String, String> WORDS_EXTRACTOR = new FlatMapFunction<String, String>() {
 		private static final long serialVersionUID = 1L;
 
-		public Iterable<String> call(String s) throws Exception {
+		public Iterable<String> call(final String s) throws Exception {
 			return Arrays.asList(s.split(" "));
 		}
 	};
@@ -24,7 +23,7 @@ public class WordCount {
 	private static final PairFunction<String, String, Integer> WORDS_MAPPER = new PairFunction<String, String, Integer>() {
 		private static final long serialVersionUID = 1L;
 
-		public Tuple2<String, Integer> call(String s) throws Exception {
+		public Tuple2<String, Integer> call(final String s) throws Exception {
 			return new Tuple2<String, Integer>(s, 1);
 		}
 	};
@@ -32,26 +31,16 @@ public class WordCount {
 	private static final Function2<Integer, Integer, Integer> WORDS_REDUCER = new Function2<Integer, Integer, Integer>() {
 		private static final long serialVersionUID = 1L;
 
-		public Integer call(Integer a, Integer b) throws Exception {
+		public Integer call(final Integer a, final Integer b) throws Exception {
 			return a + b;
 		}
 	};
 
-	public static void main(String[] args) {
-		if (args.length < 1) {
-			System.err.println("Please provide the input file full path as argument");
-			System.exit(0);
-		}
-		
-		SparkConf conf = new SparkConf().setAppName("org.apn.spark.WordCount").setMaster("local");
-		JavaSparkContext context = new JavaSparkContext(conf);
-
-		JavaRDD<String> file = context.textFile(args[0]);
-		JavaRDD<String> words = file.flatMap(WORDS_EXTRACTOR);
-		JavaPairRDD<String, Integer> pairs = words.mapToPair(WORDS_MAPPER);
-		JavaPairRDD<String, Integer> counter = pairs.reduceByKey(WORDS_REDUCER);
-
-		counter.saveAsTextFile(args[1]);
-		context.close();
+	public static JavaPairRDD<String, Integer> countWord(final JavaSparkContext context, final String inpath) {
+		final JavaRDD<String> file = context.textFile(inpath);
+		final JavaRDD<String> words = file.flatMap(WORDS_EXTRACTOR);
+		final JavaPairRDD<String, Integer> pairs = words.mapToPair(WORDS_MAPPER);
+		final JavaPairRDD<String, Integer> counter = pairs.reduceByKey(WORDS_REDUCER);
+		return counter;
 	}
 }
