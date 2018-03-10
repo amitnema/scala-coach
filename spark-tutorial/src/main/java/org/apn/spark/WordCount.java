@@ -1,6 +1,7 @@
 package org.apn.spark;
 
 import java.util.Arrays;
+import java.util.Iterator;
 
 import org.apache.spark.api.java.JavaPairRDD;
 import org.apache.spark.api.java.JavaRDD;
@@ -15,8 +16,8 @@ public class WordCount {
 	private static final FlatMapFunction<String, String> WORDS_EXTRACTOR = new FlatMapFunction<String, String>() {
 		private static final long serialVersionUID = 1L;
 
-		public Iterable<String> call(final String s) throws Exception {
-			return Arrays.asList(s.split(" "));
+		public Iterator<String> call(final String s) throws Exception {
+			return Arrays.asList(s.split(" ")).iterator();
 		}
 	};
 
