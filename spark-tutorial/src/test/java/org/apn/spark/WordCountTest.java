@@ -13,7 +13,7 @@ import org.testng.annotations.Test;
 public class WordCountTest {
 	private static JavaSparkContext context = null;
 
-	public void f() {
+	public void  testWordCount() {
 		final String inpath = "target/test-classes/wordcount.txt";
 		final String outpath = "target/wordcount-out";
 
