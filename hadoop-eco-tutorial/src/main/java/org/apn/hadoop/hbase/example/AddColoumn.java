@@ -19,5 +19,6 @@ public class AddColoumn {
 		// Adding column family
 		admin.addColumn("employee", columnDescriptor);
 		System.out.println("coloumn added");
+		admin.close();
 	}
 }
