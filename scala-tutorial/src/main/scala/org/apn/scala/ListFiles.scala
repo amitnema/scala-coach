@@ -7,7 +7,6 @@ package org.apn.scala
  */
 object ListFiles extends App {
 
-  import sys.process._
   import sys.process.stringToProcess
 
   //val cmd = stringToProcess("ls")

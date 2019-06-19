@@ -2,7 +2,6 @@ package org.apn.scala
 /**
  * @author amit.nema
  */
-import java.lang.Boolean
 
 /**
  * Print list of even numbers and odd numbers from an array.

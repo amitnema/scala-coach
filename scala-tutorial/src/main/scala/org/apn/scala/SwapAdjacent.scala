@@ -1,7 +1,5 @@
 package org.apn.scala
 
-import scala.util.Random
-
 /**
  * Write a function that takes an Int array input and swaps adjacent pairs of elements. Use for loop and yield
  *

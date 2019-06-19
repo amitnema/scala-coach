@@ -12,7 +12,6 @@
 		<java.version>1.8</java.version>
 		<pig.version>0.15.0</pig.version>
 		<hive.version>1.2.1</hive.version>
-		<spark.version>2.3.0</spark.version>
 
 		<ssh.host>localhost</ssh.host>
 		<ssh.user>root</ssh.user>
