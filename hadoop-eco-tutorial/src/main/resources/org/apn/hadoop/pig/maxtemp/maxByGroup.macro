@@ -1,4 +1,0 @@
-DEFINE max_by_group(records, grp_key, grp_val) RETURNS max_val {
-	grouped_records = GROUP $records BY $grp_key;
-	$max_val = FOREACH grouped_records GENERATE group, MAX($records.$grp_val);
-};

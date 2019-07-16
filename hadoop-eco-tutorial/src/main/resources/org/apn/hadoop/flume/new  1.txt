@@ -1,7 +1,0 @@
-$ bin/flume-ng agent --conf conf --conf-file /home/hduser/apn/projects/flume/example_flume_netcat.conf --name a1 -Dflume.root.logger=INFO,console
-
-flume-ng agent \
---conf-file /home/hduser/apn/projects/flume/spool-to-logger.properties \
---name agent1 \
---conf $FLUME_HOME/conf \
--Dflume.root.logger=INFO,console

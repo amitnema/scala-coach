@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<posts>
-  <row Id="35314" UserId="3" Text="Not sure why this is downvoted." CreationDate="2010-09-01T00:00:00.000" />
-  <row Id="48002" UserId="3" Text="Hehe, of course, it's all true." CreationDate="2010-09-01T00:00:00.000" />
-  <row Id="35314" UserId="5" Text="Please see my post below." CreationDate="2010-09-01T00:00:00.000" />
-  <row Id="35314" UserId="5" Text="Thanks you very much for your reply." CreationDate="2010-09-01T00:00:00.000" />
-  <row Id="35314" UserId="8" Text="HTMl is not the subset of XML." CreationDate="2010-09-01T00:00:00.000" />
-</posts>

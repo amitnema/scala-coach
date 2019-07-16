@@ -1,4 +1,9 @@
-[![Build Status](https://travis-ci.org/amitnema/hadoop-ecosystem.svg?branch=master)](https://travis-ci.org/amitnema/hadoop-ecosystem)
+[![Build Status](https://travis-ci.org/amitnema/scala-coach.svg?branch=master)](https://travis-ci.org/amitnema/scala-coach)
 
-# hadoop-ecosystem
-hadoop-ecosystem contains the samples of map reduce, pig, hive, hbase, spark and other hadoop related projects.
+# scala-coach
+Scala Coach contains the examples to learn the scala.
+
+# Build
+```sh
+mvn clean package
+```
